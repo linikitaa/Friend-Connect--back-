@@ -44,14 +44,7 @@ builder.Services.AddAuthentication(options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5101); // HTTP
-    options.ListenAnyIP(7085, listenOptions =>
-    {
-        listenOptions.UseHttps(); // Включаем HTTPS
-    });
-});
+
 var app = builder.Build();
 
     app.UseSwagger();
